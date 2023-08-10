@@ -1,2 +1,6 @@
-# web-420
-Repo for assignments in WEB 420
+# WEB 335 Introduction to NoSQL
+ 
+## Contributors
+* Jocelyn Dupuis
+* Professor Richard Krasso
+
