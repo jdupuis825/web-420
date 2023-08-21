@@ -42,6 +42,6 @@ const options = {
 const openapiSpecification = swaggerjsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
-app.listen(PORT, () => {
-    console.log('Application started and listening on PORT ' + PORT);
+http.createServer(app).listen(app.get('port'), function() {
+    console.log(`Application started and listening on port ${app.get('port')}`);
 });
