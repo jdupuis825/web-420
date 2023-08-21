@@ -36,12 +36,12 @@ const options = {
         },
     },
     apis: ['./routes/*.js'],
-}
+};
 
 // Variable named to call the swagger Jsdoc library using options object literal
-const openapiSpecification = swaggerJsdoc(options);
+const openapiSpecification = swaggerjsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
-http.createServer(app).listen(port, () => {
-    console.log('Application started and listening on port ${port}');
+app.listen(PORT, () => {
+    console.log('Application started and listening on PORT ' + PORT);
 });
