@@ -1,0 +1,75 @@
+#-----------------------------------------
+# Title: dupuis-composers.yaml
+# Author: Jocelyn Dupuis
+# Date: 08/25/2023
+# Description: File for Composers API
+#-----------------------------------------
+
+# OpenAPI version
+openapi: 3.0.0
+info:
+  title: Composer API
+  version: 1.0.0
+
+# Tags
+tags:
+  - name: Composers
+
+# API Paths
+paths:
+  /composers:
+  # GET for findAllComposers
+    get:
+      tags:
+        - Composers
+      summary: Returns a list of composer documents 
+      responses:
+        '200':
+          description: Composer documents 
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+
+    # POST for createComposer
+    post:
+      tags:
+        - Composers
+      summary: Creates a new composer object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+      responses:
+        '200':
+          description: User added
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+
+  # GET for findComposerById
+  /composers/{id}:
+    get:
+      tags:
+        - Composers
+      summary: Returns a composer document
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Composer document in JSON format
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
