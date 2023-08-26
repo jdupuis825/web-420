@@ -22,7 +22,9 @@ paths:
     get:
       tags:
         - Composers
-      summary: Returns a list of composer documents 
+      summary: Returns a list of composer documents
+      description: API for returning a list of composers from MongoDB Atlas 
+      operationId: findAllComposers
       responses:
         '200':
           description: Composer documents 
@@ -36,6 +38,8 @@ paths:
       tags:
         - Composers
       summary: Creates a new composer object
+      description: API for adding new composer objects
+      operationId: createComposer
       requestBody:
         content:
           application/json:
@@ -60,9 +64,12 @@ paths:
       tags:
         - Composers
       summary: Returns a composer document
+      description: API for returning a single composer object from MOngoDB
+      operationId: findComposerById
       parameters:
         - name: id
           in: path
+          description: The composerId requested by the user
           required: true
           schema:
             type: string
