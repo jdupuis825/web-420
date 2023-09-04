@@ -26,6 +26,22 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// REquire composer API from routes file
+const composerAPI = require('./routes/dupuis-composer-routes');
+
+// MongoDB connection string
+const conn = 'mongodb+srv://web420_user:s3cret@bellevueuniversity.t2iiezr.mongodb.net/web420DB';
+
+// Connect to MongoDB
+mongoose
+  .connect(conn)
+  .then(() => {
+    console.log("Connection to MongoDB was successful");
+  })
+  .catch((err) => {
+    console.log("MongoDB ERROR! ", err);
+  });
+
 // Defined object literal 
 const options = {
     definition: {

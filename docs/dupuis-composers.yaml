@@ -17,7 +17,7 @@ tags:
 
 # API Paths
 paths:
-  /composers:
+  /api/composers:
   # GET for findAllComposers
     get:
       tags:
@@ -60,7 +60,7 @@ paths:
           description: MongoDB Exception
 
   # GET for findComposerById
-  /composers/{id}:
+  /api/composers/{id}:
     get:
       tags:
         - Composers
