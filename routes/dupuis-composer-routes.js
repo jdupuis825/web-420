@@ -10,7 +10,7 @@
 // Variables that require express, router, and composer model
 const express = require('express'); 
 const router = express.Router(); 
-const Composer = require('../models/davidson-composer'); 
+const Composer = require('../models/dupuis-composer'); 
 
 /**
  * findAllComposers
