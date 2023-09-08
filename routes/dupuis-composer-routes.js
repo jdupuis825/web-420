@@ -3,7 +3,7 @@
 ; Title: dupuis-composer-routes.js
 ; Author: Jocelyn Dupuis
 ; Date: 09/03/2023
-; Description: MRouting for composers API assignment
+; Description: Routing for composers API assignment
 ============================================
 */
 
