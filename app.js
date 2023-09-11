@@ -26,8 +26,9 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// REquire composer API from routes file
+// Require composer and person API from routes file
 const composerAPI = require('./routes/dupuis-composer-routes');
+const personAPI = require('./routes/dupuis-person-routes');
 
 // MongoDB connection string
 const conn = 'mongodb+srv://web420_user:s3cret@bellevueuniversity.t2iiezr.mongodb.net/web420DB';
@@ -58,6 +59,11 @@ const options = {
 const openapiSpecification = swaggerjsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
+// Use composer and person APIs
+app.use('/api', composerAPI);
+app.use('/api', personAPI);
+
 http.createServer(app).listen(app.get('port'), function() {
     console.log(`Application started and listening on port ${app.get('port')}`);
 });
+
