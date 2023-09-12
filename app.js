@@ -15,6 +15,8 @@ const http = require('http');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const mongoose = require('mongoose');
+const Composer = require('./models/dupuis-composer');
+const Person = require('./models/dupuis-person');
 
 // Variable named and assigned to express library
 const app = express();
