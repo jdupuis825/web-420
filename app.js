@@ -31,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 // Require composer and person API from routes file
 const composerAPI = require('./routes/dupuis-composer-routes');
 const personAPI = require('./routes/dupuis-person-routes');
+const userAPI = require('./routes/dupuis-user-routes')
 
 // MongoDB connection string
 const conn = 'mongodb+srv://web420_user:s3cret@bellevueuniversity.t2iiezr.mongodb.net/web420DB';
@@ -59,11 +60,13 @@ const options = {
 
 // Variable named to call the swagger Jsdoc library using options object literal
 const openapiSpecification = swaggerjsdoc(options);
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 // Use composer and person APIs
 app.use('/api', composerAPI);
 app.use('/api', personAPI);
+app.use('/api', userAPI);
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log(`Application started and listening on port ${app.get('port')}`);

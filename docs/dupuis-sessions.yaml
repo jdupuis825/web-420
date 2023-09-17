@@ -1,0 +1,72 @@
+#-----------------------------------------
+# Title: dupuis-sessions.yaml
+# Author: Jocelyn Dupuis
+# Date: 09/15/2023
+# Description: File for sessions API
+#-----------------------------------------
+
+# OpenAPI version
+openapi: 3.0.0
+info:
+  title: User sessions API
+  version: 1.0.0
+
+# Tags to operations
+tags:
+  - name: User
+
+# API Paths
+paths:
+  /api/users:
+    # post for creating user
+    post:
+      summary: User signup
+      operationId: userSignup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                password:
+                  type: string
+                emailAddress:
+                  type: string
+      responses:
+        '200':
+          description: Registered user
+        '401':
+          description: Username is already in use
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+
+# post operations and responses
+  /api/login:
+    post:
+      summary: User login
+      operationId: userLogin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+            type: object
+            properties:
+              userName:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          description: User logged in
+        '401':
+          description: Invalid username and/or password
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
