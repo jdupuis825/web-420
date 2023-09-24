@@ -1,9 +1,9 @@
 /*
 ============================================
-; Title: dupuis-session-routes.js
+; Title: dupuis-user-routes.js
 ; Author: Jocelyn Dupuis
 ; Date: 09/17/2023
-; Description: Routing for sessions
+; Description: Routing for user
 ============================================
 */
 
