@@ -7,7 +7,7 @@
 ============================================
 */
 
-// Requires express, user model, bcrypt, and declares router 
+// Requires statements 
 const express = require('express');
 const User = require('../models/dupuis-user');
 const bcrypt = require('bcryptjs');
@@ -64,4 +64,5 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// Exports router
 module.exports = router;

@@ -9,6 +9,7 @@
 
 // Variable to require mongoose 
 const mongoose = require('mongoose');
+
 // Variable to create schema
 const Schema = mongoose.Schema;
 

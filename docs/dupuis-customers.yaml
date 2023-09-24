@@ -1,0 +1,110 @@
+#-----------------------------------------
+# Title: dupuis-composers.yaml
+# Author: Jocelyn Dupuis
+# Date: 09/22/2023
+# Description: File for customers API
+#-----------------------------------------
+
+# OpenAPI version 
+openapi: 3.0.0
+info:
+  title: Customer and Invoice API
+  version: 1.0.0
+
+# Tags 
+tags:
+  - name: Customers
+  - name: Invoices
+
+# API Paths
+paths:
+  /api/customers:
+    # POST: createCustomer
+    post:
+      tags:
+        - Customers
+      summary: Create a new customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                userName:
+                  type: string
+      responses:
+        '200':
+          description: Customer added to MongoDB
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+
+  /api/customers/{username}/invoices:
+    # POST: createInvoiceByUserName
+    post:
+      tags:
+        - Invoices
+      summary: Create an invoice for a specific user
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subtotal:
+                  type: number
+                tax:
+                  type: number
+                dateCreated:
+                  type: string
+                  format: date
+                dateShipped:
+                  type: string
+                  format: date
+                lineItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      price:
+                        type: number
+                      quantity:
+                        type: number
+      responses:
+        '200':
+          description: Invoice added to MongoDB
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+    # GET: findAllInvoicesByUserName
+    get:
+      tags:
+        - Invoices
+      summary: Retrieves invoices for a specific user
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Invoices retrieved successfully
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
