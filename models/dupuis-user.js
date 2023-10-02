@@ -7,18 +7,21 @@
 ============================================
 */
 
-// Variable to require mongoose 
+// require mongoose 
 const mongoose = require('mongoose');
 
-// Variable to create schema
+// Create schema
 const Schema = mongoose.Schema;
 
-// Declares new user schema with username, password, and  an email address
-let userSchema = new Schema({
-    username: { type: String },
-    password: { type: String },
-    emailAddress: { type: Array }
+// New user schema with username, password, and  an email address
+const userSchema = new Schema({
+    username: String,
+    password: String,
+    emailAddress: [{type: String, unique: true}],
 });
 
-// Exports user model
-module.exports = mongoose.model('User', userSchema);
+// Declares user model
+const User = mongoose.model('User', userSchema);
+
+// Exports model
+module.exports = User;

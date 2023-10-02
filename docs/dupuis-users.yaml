@@ -11,14 +11,14 @@ info:
   title: User sessions API
   version: 1.0.0
 
-# Tags to operations
+# Tags
 tags:
   - name: User
 
 # API Paths
 paths:
-  /api/users:
-    # post for creating user
+  /api/signup:
+    # POST: signup
     post:
       summary: User signup
       operationId: userSignup
@@ -45,7 +45,7 @@ paths:
         '501':
           description: MongoDB Exception
 
-# post operations and responses
+# POST: login
   /api/login:
     post:
       summary: User login

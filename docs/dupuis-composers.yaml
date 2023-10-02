@@ -23,7 +23,7 @@ paths:
       tags:
         - Composers
       summary: Returns a list of composer documents
-      description: API for returning a list of composers from MongoDB Atlas 
+      description: API for returning a list of composers from MongoDB 
       operationId: findAllComposers
       responses:
         '200':
@@ -37,7 +37,7 @@ paths:
     post:
       tags:
         - Composers
-      summary: Creates a new composer object
+      summary: Creates a new composer 
       description: API for adding new composer objects
       operationId: createComposer
       requestBody:
@@ -77,6 +77,56 @@ paths:
       responses:
         '200':
           description: Composer document in JSON format
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+
+    # PUT for updateComposerById
+    put:
+      tags:
+        - Composers
+      summary: Update a composer by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+      responses:
+        '200':
+          description: Array of composer documents
+        '401':
+          description: Invalid composerId
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+
+    # DELETE for deleteComposerById
+    delete:
+      tags:
+        - Composers
+      summary: Delete a composer by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Composer document
         '500':
           description: Server Exception
         '501':

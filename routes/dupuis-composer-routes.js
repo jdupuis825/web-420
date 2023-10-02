@@ -12,158 +12,90 @@ const express = require('express');
 const router = express.Router(); 
 const Composer = require('../models/dupuis-composer'); 
 
-/**
- * findAllComposers
- * @openapi
- * /api/composers
- * get:
- *   tags:
- *     - Composers
- *   description: API for returning an array of composer objects.
- *   summary: returns an array of composers in JSON format.
- *   responses: 
- *     '200':
- *       description: Array of composers
- *     '500':
- *       description: Server Exception
- *     '501':
- *       description: MongoDB Exception 
- */       
-router.get('/composers', async(req, res) => {    
+// Operation GET: find composers
+router.get("/composers", async (req, res) => {
     try {
-        // Finds all composers documents
-        Composer.find({}, function(err, composers) {
-            // If there's an error a error message is displayed
-            if (err) {
-                console.log(err);
-                res.status(501).send({
-                    'message': `MongoDB Exception: ${err}`
-                })
-            // If successful a list of all composers will be the response
-            } else {
-                console.log(composers);
-                res.json(composers);
-            }
-        })
-    // If error occurs with server a server error message is displayed
-    } catch (e) {
-        console.log(e);
-        res.status(500).send({
-            'message': `Server Exception: ${e.message}`
-        })
+      // Finds all composers documents
+      const composers = await Composer.find();
+      res.status(200).json(composers);
+      // Error message is displayed
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
-})
-
-/**
- * findComposerById
- * @openapi
- * /api/composers/:id
- * get:
- *   tags:
- *     - Composers
- *   description: API for returning a composer document.
- *   summary: returns a composer document.
- *   parameters:
- *     - name: id
- *       in: path
- *       required: true
- *       description: Composer document id
- *       schema:
- *         type: string      
- *   responses: 
- *     '200':
- *       description: Composer document
- *     '500':
- *       description: Server Exception
- *     '501':
- *       description: MongoDB Exception
- */   
-
-router.get('/composers/:id', async(req, res) => {     
+  });
+  
+  // Operation GET: composer by id parameter
+  router.get("/composers/:id", async (req, res) => {
+    const id = req.params.id;
     try {
-        // Finds a composer by id parameter
-        Composer.findOne({'_id': req.params.id}, function(err, composer) {
-            // If error occurs with MongoDB
-            if (err) {                
-                console.log(err);
-                res.status(501).send({
-                    'message': `MongoDB Exception: ${err}`
-                })
-            // If successful composer document is displayed
-            } else {
-                console.log(composer);
-                res.json(fruit);
-            }
-        })
-    // If error occurs with server a server error message is displayed
-    } catch (e) {
-        console.log(e);
-        res.status(500).send({
-            'message': `Server Exception: ${e.message}`
-        })
+      const composer = await Composer.findById(id);
+      res.status(200).json(composer);
+       // Error message is displayed
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
-})
-
-/**
- * createComposer
- * @openapi
- * /api/composer:
- *   post:
- *     tags:
- *       - Composer
- *     name: createComposer
- *     description: API for adding a new composer document to MongoDB Atlas
- *     summary: Creates a new composer document
- *     requestBody:
- *       description: Composer information
- *       content:
- *         application/json:
- *           schema:
- *             required:
- *               - firstName
- *               - lastName
- *             properties:
- *               firstName
- *                 type: string
- *               lastName:
- *                 type: string
- *     responses:
- *       '200':
- *         description: Composer document
- *       '500':
- *         description: Server Exception
- *       '501':
- *         description: MongoDB Exception
- */
-
-router.post('/composers', async(req, res) => {
+  });
+  
+  // Operation POST: creates new composer object with request parameters
+  router.post("/composers", async (req, res) => {
+    const composer = new Composer({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+    });
     try {
-        // Creates a new composer object with request parameters
-        const newComposer = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName
-        }
-        await Composer.create(newComposer, function(err, composer) {
-            // If error occurs with MongoDB
-            if (err) {
-                console.log(err);
-                res.status(501).send({
-                    'message': `MongoDB Exception: ${err}`
-                })
-            // If successful a new composer document is added
-            } else {
-                console.log(composer);
-                res.json(composer);
-            }
-        })
-    // If error occurs with server a server error message is displayed
-    } catch (e) {
-        console.log(e);
-        res.status(500).send({
-            'message': `Server Exception: ${e.message}`
-        })        
+      await composer.save();
+      res.status(201).json(composer);
+      // Error message is displayed
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
-})
+  });
+  
+  // Operation PUT: composers request
+  router.put("/composers/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+      const composer = await Composer.findOne({ _id: id });
+      if (composer) {
+        composer.set({
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+        });
+        const savedComposer = await composer.save();
+        res.status(200).json(savedComposer);
+      } else {
+        // Return 401 status when composer doesn't exist
+        res.status(401).json({ message: "Invalid composerId" });
+      }
+      // Error message is displayed
+    } catch (error) {
+      if (error.name === "MongoError") {
+        res.status(501).json({ message: "MongoDB Exception" });
+      } else {
+        res.status(500).json({ message: "Server Exception" });
+      }
+    }
+  });
+  
+  // Operation DELETE: composers request
+  router.delete("/composers/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+      const deletedComposer = await Composer.findByIdAndDelete(id);
+      if (deletedComposer) {
+        res.status(200).json(deletedComposer);
+      } else {
+        res.status(500).json({ message: "Composer not found" });
+      }
+    } catch (error) {
+      if (error.name === "MongoError") {
+        res.status(501).json({ message: "MongoDB Exception" });
+      } else {
+        res.status(500).json({ message: "Server Exception" });
+      }
+    }
+  });
+  
+  // Exports router
+  module.exports = router;
 
-// Exports router module
-module.exports = router;

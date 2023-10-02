@@ -16,6 +16,13 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const mongoose = require('mongoose');
 
+// API require statements 
+const composerAPI = require('./routes/dupuis-composer-routes');
+const Composer = require('./models/dupuis-composer');
+const Person = require('./models/dupuis-person');
+const personAPI = require('./routes/dupuis-person-routes');
+const userAPI = require('./routes/dupuis-user-routes');
+const customerAPI = require('./routes/dupuis-node-shopper-routes');
 
 // Variable named and assigned to express library
 const app = express();
@@ -26,14 +33,6 @@ const port = process.env.PORT || 3000;
 // Sets app to use express.json and express.urlencoded
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Require composer and person API from routes file
-const composerAPI = require('./routes/dupuis-composer-routes');
-const Composer = require('./models/dupuis-composer');
-const Person = require('./models/dupuis-person');
-const personAPI = require('./routes/dupuis-person-routes');
-const userAPI = require('./routes/dupuis-user-routes');
-const customerAPI = require('./routes/dupuis-node-shopper-routes');
 
 // MongoDB connection string
 const conn = 'mongodb+srv://web420_user:s3cret@bellevueuniversity.t2iiezr.mongodb.net/web420DB';
@@ -64,7 +63,7 @@ const options = {
 };
 
 // Variable named to call the swagger Jsdoc library using options object literal
-const openapiSpecification = swaggerjsdoc(options);
+const openapiSpecification = swaggerJsdoc(options);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
@@ -74,7 +73,10 @@ app.use('/api', personAPI);
 app.use('/api', userAPI);
 app.use('/api', customerAPI);
 
-http.createServer(app).listen(app.get('port'), function() {
-    console.log(`Application started and listening on port ${app.get('port')}`);
+// Server
+http.createServer(app).listen(port, function () {
+  console.log(`Server started and listening on port: ${port}`);
+  console.log('Test with Swagger, visit: http://localhost:3000/api-docs/');
+  console.log('Terminate the server, press Ctrl + C');
 });
 

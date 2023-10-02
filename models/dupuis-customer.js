@@ -7,10 +7,10 @@
 ============================================
 */
 
-// Variable to require mongoose
-const mongoose = require("mongoose");
+// Require mongoose
+const mongoose = require('mongoose');
 
-// Variable to create schema
+// Create schema
 const schema = mongoose.Schema;
 
 // New schema for name, price, and quantity
@@ -38,4 +38,4 @@ const customerSchema = new schema({
 });
 
 // Exports model
-module.exports = mongoose.model("Customer", customerSchema);
+module.exports = mongoose.model('Customer', customerSchema);

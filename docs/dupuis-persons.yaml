@@ -2,7 +2,7 @@
 # Title: dupuis-sessions.yaml
 # Author: Jocelyn Dupuis
 # Date: 09/7/2023
-# Description: File for sessions API
+# Description: File for persons API
 #-----------------------------------------
 
 # OpenAPI version 
@@ -17,20 +17,21 @@ tags:
 
 # API Paths
 paths:
-  /api/people:
-  # GET operation 
+  /api/persons:
+  # GET: findAllPersons
     get:
       tags:
         - People
-      summary: Retrieve all People
+      summary: Retrieves all People
       responses:
         '200':
-          description: Successful operation
+          description: Array of persons documents 
         '500':
           description: Server Exception
         '501':
           description: MongoDB Exception
-    # POST operation 
+
+    # POST: createPerson
     post:
       tags:
         - People
@@ -58,7 +59,7 @@ paths:
                 
       responses:
         '200':
-          description: Successful operation
+          description: Array of person documents
         '500':
           description: Server Exception
         '501':

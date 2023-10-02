@@ -8,29 +8,34 @@
 */
 
 
-// Variables to require mongoose and create schema
+// Require mongoose 
 const mongoose = require('mongoose');
+
+// Create schema
 const Schema = mongoose.Schema;
 
-// New role schema with text field
-let roleSchema = new Schema({
-    text: { type: String }
+// New schema 
+const roleSchema = new Schema({
+    text: String,
 });
 
 // Dependent schema with fields for firstName and lastName
-let dependentSchema = new Schema({
-    firstName: { type: String },
-    lastName: { type: String }
+const dependentSchema = new Schema({
+    firstName: String,
+    lastName: String,
 });
 
 // Person scheme with firstName and lastName fields, roles, dependents, and birth date
-let PersonSchema = new Schema({
-    firstName: { type: String },
-    lastName: { type: String },
+const personSchema = new Schema({
+    firstName: String,
+    lastName: String,
     roles: [roleSchema],
     dependents: [dependentSchema],
-    birthDate: { type: String }
+    birthDate: String,
 });
 
-// Exports Person model
-module.exports = mongoose.model('Person', PersonSchema);
+// Declare Person model
+ const Person = mongoose.model('Person', personSchema);
+
+ // Exports model
+ module.exports = Person;

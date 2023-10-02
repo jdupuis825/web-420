@@ -3,7 +3,7 @@
 ; Title: dupuis-person.js
 ; Author: Jocelyn Dupuis
 ; Date: 09/09/2023
-; Description: Model for people
+; Description: Routing for people
 ============================================
 */
 
@@ -11,7 +11,53 @@
 // Variables to require express, router, and person model
 const express = require('express');
 const router = express.Router();
-const person = require('../models/dupuis-person');
+const Person = require('../models/dupuis-person');
+
+// Operation GET: Person request
+router.get('/persons', async (req, res) => {
+    try {
+      const persons = await Person.find();
+      res.status(200).json(persons);
+    } catch (error) {
+      res.status(500).json({ message: 'Server Exception' });
+    }
+  });
+  
+// Operation POST: creates person request
+router.post('/persons', async (req, res) => {
+  const createPerson = new Person({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    roles: req.body.roles,
+    dependents: req.body.dependents,
+    birthDate: req.body.birthDate,
+  });
+  try {
+    await createPerson.save();
+    res.status(200).json(createPerson);
+  } catch (error) {
+    res.status(500).json({ message: 'Server Exception' });
+  }
+});
+
+// Exports router
+module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * findAllPersons
