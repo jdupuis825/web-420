@@ -67,9 +67,10 @@ const options = {
 // Variable named to call the swagger Jsdoc library using options object literal
 const openapiSpecification = swaggerJsdoc(options);
 
+// Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
-// Use composer and person APIs
+// Use APIs: composer, persons, user, customer
 app.use('/api', composerAPI);
 app.use('/api', personAPI);
 app.use('/api', userAPI);
@@ -77,8 +78,7 @@ app.use('/api', customerAPI);
 
 // Server
 http.createServer(app).listen(port, function () {
-  console.log(`Server started and listening on port: ${port}`);
-  console.log('Test with Swagger, visit: http://localhost:3000/api-docs/');
-  console.log('Terminate the server, press Ctrl + C');
+  console.log(`Start server and listening on port: ${port}`);
+  console.log('Test Swagger: http://localhost:3000/api-docs/');
 });
 

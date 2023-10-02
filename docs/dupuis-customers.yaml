@@ -24,6 +24,7 @@ paths:
       tags:
         - Customers
       summary: Create new customer
+      operationId: createCustomer
       requestBody:
         content:
           application/json:
@@ -50,6 +51,7 @@ paths:
       tags:
         - Invoices
       summary: Create invoice for user by name
+      operationId: createInvoiceByUserName
       parameters:
         - name: username
           in: path

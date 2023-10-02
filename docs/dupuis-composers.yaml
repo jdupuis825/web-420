@@ -22,7 +22,7 @@ paths:
     get:
       tags:
         - Composers
-      summary: Returns a list of composer documents
+      summary: Returns list of composer documents
       description: API for returning a list of composers from MongoDB 
       operationId: findAllComposers
       responses:
@@ -37,7 +37,7 @@ paths:
     post:
       tags:
         - Composers
-      summary: Creates a new composer 
+      summary: Creates new composer 
       description: API for adding new composer objects
       operationId: createComposer
       requestBody:
@@ -64,7 +64,7 @@ paths:
     get:
       tags:
         - Composers
-      summary: Returns a composer document
+      summary: Returns composer document
       description: API for returning a single composer object from MOngoDB
       operationId: findComposerById
       parameters:
@@ -86,7 +86,7 @@ paths:
     put:
       tags:
         - Composers
-      summary: Update a composer by ID
+      summary: Update composer by ID
       parameters:
         - name: id
           in: path
@@ -117,7 +117,7 @@ paths:
     delete:
       tags:
         - Composers
-      summary: Delete a composer by ID
+      summary: Deletes composer by ID
       parameters:
         - name: id
           in: path

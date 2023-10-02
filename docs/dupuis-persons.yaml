@@ -13,7 +13,7 @@ info:
 
 # Tags 
 tags:
-  - name: People
+  - name: Person
 
 # API Paths
 paths:
@@ -21,8 +21,8 @@ paths:
   # GET: findAllPersons
     get:
       tags:
-        - People
-      summary: Retrieves all People
+        - Person
+      summary: Retrieves all persons
       responses:
         '200':
           description: Array of persons documents 
