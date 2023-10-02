@@ -19,10 +19,12 @@ const mongoose = require('mongoose');
 // API require statements 
 const composerAPI = require('./routes/dupuis-composer-routes');
 const Composer = require('./models/dupuis-composer');
-const Person = require('./models/dupuis-person');
 const personAPI = require('./routes/dupuis-person-routes');
+const Person = require('./models/dupuis-person');
 const userAPI = require('./routes/dupuis-user-routes');
+const User = require('./models/dupuis-user');
 const customerAPI = require('./routes/dupuis-node-shopper-routes');
+const Customer = require('./models/dupuis-customer');
 
 // Variable named and assigned to express library
 const app = express();

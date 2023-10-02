@@ -9,9 +9,9 @@
 
 
 // Require 
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const Customer = require("../models/dupuis-customer");
+const Customer = require('../models/dupuis-customer');
 
 
 // Operation: POST createCustomer
