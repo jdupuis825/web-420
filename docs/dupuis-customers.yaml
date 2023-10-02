@@ -24,7 +24,6 @@ paths:
       tags:
         - Customers
       summary: Create new customer
-      operationId: createCustomer
       requestBody:
         content:
           application/json:
@@ -45,13 +44,12 @@ paths:
         '501':
           description: MongoDB Exception
 
-  /api/customers/{username}/invoices:
+  /api/customers/{userName}/invoices:
     # POST: createInvoiceByUserName
     post:
       tags:
         - Invoices
       summary: Create invoice for user by name
-      operationId: createInvoiceByUserName
       parameters:
         - name: username
           in: path

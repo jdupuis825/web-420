@@ -20,8 +20,8 @@ paths:
   /api/signup:
     # POST: signup
     post:
+      tags: User
       summary: User signup
-      operationId: userSignup
       requestBody:
         required: true
         content:
@@ -45,22 +45,21 @@ paths:
         '501':
           description: MongoDB Exception
 
-# POST: login
+  # POST: login
   /api/login:
     post:
       summary: User login
-      operationId: userLogin
       requestBody:
         required: true
         content:
           application/json:
             schema:
-            type: object
-            properties:
-              userName:
-                type: string
-              password:
-                type: string
+              type: object
+              properties:
+                userName:
+                  type: string
+                password:
+                  type: string
       responses:
         '200':
           description: User logged in

@@ -15,7 +15,7 @@ const Schema = mongoose.Schema;
 
 // New user schema with username, password, and  an email address
 const userSchema = new Schema({
-    username: String,
+    userName: String,
     password: String,
     emailAddress: [{type: String, unique: true}],
 });
