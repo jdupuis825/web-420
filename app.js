@@ -41,7 +41,11 @@ const conn = 'mongodb+srv://web420_user:s3cret@bellevueuniversity.t2iiezr.mongod
 
 // Connect to MongoDB
 mongoose
-  .connect(conn)
+  .connect(conn, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  })
   .then(() => {
     console.log("Connection to MongoDB was successful");
   })
