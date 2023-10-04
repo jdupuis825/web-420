@@ -8,14 +8,14 @@
 */
 
 // Variables that require express, router, and composer model
-const express = require('express'); 
+const express = require("express"); 
 const router = express.Router(); 
-const Composer = require('../models/dupuis-composer'); 
+const Composer = require("../models/dupuis-composer"); 
 
 
 
 // Operation GET: find composers
-router.get("/composers", async (req, res) => {
+router.get("/composers", async (_req, res) => {
     try {
       // Finds all composers documents
       const composers = await Composer.find();

@@ -67,7 +67,6 @@ paths:
       parameters:
         - name: id
           in: path
-          description: The composerId requested by the user
           required: true
           schema:
             type: string
