@@ -9,9 +9,9 @@
 
 
 // Require 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Customer = require('../models/dupuis-customer');
+const Customer = require("../models/dupuis-customer");
 
 
 // Operation: POST createCustomer
@@ -63,7 +63,6 @@ router.post("/customers/:username/invoices", async (req, res) => {
       .status(200)
       .json({ message: "Invoice added to MongoDB", data: newInvoice });
   } catch (error) {
-    // Error handling
     console.error(error);
     if (error.name === "MongoError") {
       res.status(501).json({ message: "MongoDB Exception", error: error });

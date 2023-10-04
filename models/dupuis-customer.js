@@ -8,7 +8,7 @@
 */
 
 // Require mongoose
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // Create schema
 const schema = mongoose.Schema;

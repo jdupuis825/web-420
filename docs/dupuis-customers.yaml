@@ -44,7 +44,7 @@ paths:
         '501':
           description: MongoDB Exception
 
-  /api/customers/{userName}/invoices:
+  /api/customers/{username}/invoices:
     # POST: createInvoiceByUserName
     post:
       tags:
