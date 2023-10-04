@@ -9,9 +9,9 @@
 
 
 // Variables to require express, router, and person model
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Person = require('../models/dupuis-person');
+const Person = require("../models/dupuis-person");
 
 // Operation GET: Person request
 router.get('/persons', async (req, res) => {

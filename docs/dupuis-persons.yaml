@@ -34,7 +34,7 @@ paths:
     # POST: createPerson
     post:
       tags:
-        - People
+        - Person
       summary: Creates a person
       requestBody:
         content:
