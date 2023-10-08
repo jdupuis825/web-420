@@ -14,14 +14,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Create schema for player
-const playerSchema = new schema({
+const playerSchema = new Schema({
     fistName: String,
     lastName: String,
     salary: Number,
 });
 
 // Create schema for team
-const teamSchema = new schema({
+const teamSchema = new Schema({
     name: String,
     mascot: String,
     players: [playerSchema],
