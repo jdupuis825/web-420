@@ -25,6 +25,7 @@ const userAPI = require('./routes/dupuis-user-routes');
 const User = require('./models/dupuis-user');
 const customerAPI = require('./routes/dupuis-node-shopper-routes');
 const Customer = require('./models/dupuis-customer');
+const teamAPI = require('./routes/dupuis-team-routes');
 
 // Variable named and assigned to express library
 const app = express();
@@ -65,7 +66,8 @@ const options = {
     apis: ['./docs/dupuis-composers.yaml',
            './docs/dupuis-persons.yaml',
            './docs/dupuis-users.yaml',
-           './docs/dupuis-customers.yaml'],
+           './docs/dupuis-customers.yaml',
+           './docs/dupuis-teams.yaml'],
 };
 
 // Variable named to call the swagger Jsdoc library using options object literal
@@ -79,6 +81,7 @@ app.use('/api', composerAPI);
 app.use('/api', personAPI);
 app.use('/api', userAPI);
 app.use('/api', customerAPI);
+app.use('/api', teamAPI);
 
 // Server
 http.createServer(app).listen(port, function () {

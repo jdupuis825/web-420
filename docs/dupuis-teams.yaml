@@ -1,0 +1,121 @@
+#-----------------------------------------
+# Title: dupuis-teams.yaml
+# Author: Jocelyn Dupuis
+# Date: 10/07/2023
+# Description: File for Teams API
+#-----------------------------------------
+
+
+openapi: 3.0.0
+info:
+  title: Team and Player API
+  version: 1.0.0
+
+tags:
+  - name: Teams
+
+paths:
+  /api/teams:
+  # GET for findAllTeams
+    get:
+      tags:
+        - Teams 
+      summary: Retrieve all teams
+      responses:
+        '200':
+          description: Array of team documents
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+
+  /api/teams/{id}/players:
+  # POST for assignPlayerToTeam
+    post:
+      tags:
+        - Teams
+      summary: Assigns player to team
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                salary:
+                  type: string
+      responses:
+        '200':
+          description: Player document
+        '401':
+          description: Invalid teamId
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+    # GET for findAllPlayersByTeamId
+    get:
+      tags:
+        - Teams
+      summary: Retrieves players by team ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of player documents
+        '401':
+          description: Invalid teamId
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+  # DELETE for deleteTeamById
+  /api/teams/{id}:
+    delete:
+      tags:
+        - Teams 
+      summary: Delete team by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Team document
+        '401':
+          description: Invalid teamId
+        '500':
+          description: Server Exception
+        '501':
+          description: MongoDB Exception
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
