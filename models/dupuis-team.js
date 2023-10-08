@@ -11,19 +11,20 @@
 const mongoose = require("mongoose");
 
 // Create schema
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
+
+// Create schema for player
+const playerSchema = new schema({
+    fistName: String,
+    lastName: String,
+    salary: Number,
+});
 
 // Create schema for team
 const teamSchema = new schema({
     name: String,
     mascot: String,
     players: [playerSchema],
-});
-
-const playerSchema = new schema({
-    fistName: String,
-    lastName: String,
-    salary: Number,
 });
 
 // Exports model
