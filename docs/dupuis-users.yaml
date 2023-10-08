@@ -20,7 +20,8 @@ paths:
   /api/signup:
     # POST: signup
     post:
-      tags: User
+      tags: 
+        - User
       summary: User signup
       requestBody:
         required: true
@@ -48,6 +49,8 @@ paths:
   # POST: login
   /api/login:
     post:
+      tags:
+        - User
       summary: User login
       requestBody:
         required: true
